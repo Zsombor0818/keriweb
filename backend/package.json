@@ -1,0 +1,20 @@
+{
+  "name": "keriweb",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zsombor0818/keriweb.git"
+  },
+  "author": "Kuzma Bence, Szabó Zsombor, Varga Viktor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zsombor0818/keriweb/issues"
+  },
+  "homepage": "https://github.com/Zsombor0818/keriweb#readme",
+  "description": ""
+}
