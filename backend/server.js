@@ -17,4 +17,4 @@ app.get('/', async (req, res) => {
     res.render('index');
 });
 
-app.listen(3000, () => console.log('Szerver fut: http://localhost:3000'));
+app.listen(26052, () => console.log('Szerver fut: http://localhost:26052'));
