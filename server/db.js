@@ -4,8 +4,8 @@ const mysql = require("mysql2/promise");
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "dev.zsombordev.hu",
   port: parseInt(process.env.DB_PORT || "41563"),
-  user: process.env.DB_USER || "keri_user",
-  password: process.env.DB_PASS || "keri_pass",
+  user: process.env.DB_USER || "zsdsv1",
+  password: process.env.DB_PASS || "devPass18s",
   database: process.env.DB_NAME || "keri_cms",
   waitForConnections: true,
   connectionLimit: 10,
