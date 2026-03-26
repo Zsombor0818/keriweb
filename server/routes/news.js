@@ -9,12 +9,10 @@ router.get("/", async (req, res) => {
   try {
     const limit = Math.min(parseInt(req.query.limit) || 50, 100);
 
-    const rows = await db.q(`
-      SELECT * FROM news
-      WHERE published=1
-      ORDER BY created_at DESC
-      LIMIT ${limit}
-    `);
+    const rows = await db.q(
+      "SELECT * FROM news WHERE published=1 ORDER BY created_at DESC LIMIT " +
+        limit,
+    );
 
     res.json(rows);
   } catch (e) {
