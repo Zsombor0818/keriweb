@@ -7,13 +7,16 @@ const { requireAuth } = require("../middleware/auth");
 // Public: published news
 router.get("/", async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 50;
-    res.json(
-      await db.q(
-        "SELECT * FROM news WHERE published=1 ORDER BY created_at DESC LIMIT ?",
-        [limit],
-      ),
-    );
+    const limit = Math.min(parseInt(req.query.limit) || 50, 100);
+
+    const rows = await db.q(`
+  SELECT * FROM news
+  WHERE published=1
+  ORDER BY created_at DESC
+  LIMIT ${limit}
+`);
+
+    res.json(rows);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
