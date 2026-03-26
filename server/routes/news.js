@@ -9,14 +9,18 @@ router.get("/", async (req, res) => {
   try {
     const limit = Math.min(parseInt(req.query.limit) || 50, 100);
 
-    const rows = await db.q(
-      "SELECT * FROM news WHERE published=1 ORDER BY created_at DESC LIMIT " +
-        limit,
-    );
+    const sql = `
+      SELECT * FROM news
+      WHERE published=1
+      ORDER BY created_at DESC
+      LIMIT ${limit}
+    `;
+
+    const rows = await db.q(sql);
 
     res.json(rows);
   } catch (e) {
-    console.error("NEWS LIST ERROR:", e); // 🔥 fontos debug
+    console.error("NEWS ERROR:", e);
     res.status(500).json({ error: e.message });
   }
 });

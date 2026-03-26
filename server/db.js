@@ -15,6 +15,7 @@ const pool = mysql.createPool({
 });
 
 // Helpers
+pool.querySafe = (sql) => pool.query(sql).then(([rows]) => rows);
 pool.q = (sql, params) => pool.execute(sql, params).then(([rows]) => rows);
 pool.q1 = (sql, params) => pool.q(sql, params).then((rows) => rows[0] ?? null);
 pool.run = (sql, params) => pool.execute(sql, params).then(([ok]) => ok);
