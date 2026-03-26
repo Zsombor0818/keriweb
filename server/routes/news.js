@@ -16,11 +16,12 @@ router.get("/", async (req, res) => {
       LIMIT ${limit}
     `;
 
-    const rows = await db.q(sql);
-
+    const rows = await db.q(`
+  SELECT 1 as test
+`);
     res.json(rows);
   } catch (e) {
-    console.error("NEWS ERROR:", e);
+    console.error("🔥 NEWS ERROR:", e); // <- EZ KELL
     res.status(500).json({ error: e.message });
   }
 });
