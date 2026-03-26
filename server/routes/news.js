@@ -5,12 +5,20 @@ const slugify = require("slugify");
 const { requireAuth } = require("../middleware/auth");
 
 // Public: published news
-router.get("/", async (req, res, next) => {
+router.get("/", async (req, res) => {
   try {
-    const data = await db.query("SELECT * FROM news");
-    res.json(data);
-  } catch (err) {
-    next(err);
+    const limit = parseInt(req.query.limit) || 50;
+
+    const query = `
+  SELECT * FROM news
+  WHERE published=1
+  ORDER BY created_at DESC
+  LIMIT ${limit}
+`;
+
+    res.json(await db.q(query));
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 
