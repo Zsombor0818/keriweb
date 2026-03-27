@@ -1,7 +1,5 @@
-/* public/js/admin.js  –  Keri CMS Admin Panel */
 'use strict';
 
-// ── State ─────────────────────────────────────────────────────────────────────
 let currentUser  = null;
 let currentPage  = 'dashboard';
 let allNews      = [];
@@ -9,7 +7,6 @@ let quillEditor  = null;
 let modalSaveFn  = null;
 let editingId    = null;
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
 (async () => {
   try {
     const r = await fetch('/api/auth/me', { credentials: 'include' });
@@ -22,7 +19,6 @@ let editingId    = null;
   }
 })();
 
-// ── Auth ──────────────────────────────────────────────────────────────────────
 function showLogin() {
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('adminApp').style.display    = 'none';
@@ -74,12 +70,10 @@ window.doLogout = async function() {
   showLogin();
 };
 
-// Enter key on login
 document.getElementById('loginPass')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') doLogin();
 });
 
-// ── Navigation ────────────────────────────────────────────────────────────────
 const PAGE_TITLES = {
   dashboard: 'Irányítópult',
   news:      'Hírek',
@@ -107,7 +101,6 @@ window.adminNav = function(page) {
   loaders[page]?.();
 };
 
-// ── API helper ─────────────────────────────────────────────────────────────────
 async function api(url, opts = {}) {
   const r = await fetch(url, { credentials: 'include', ...opts });
   const data = await r.json().catch(() => ({}));
@@ -115,7 +108,6 @@ async function api(url, opts = {}) {
   return data;
 }
 
-// ── Toast ─────────────────────────────────────────────────────────────────────
 let _toastTimer;
 function toast(msg, type = 'success') {
   const el = document.getElementById('toast');
@@ -125,7 +117,6 @@ function toast(msg, type = 'success') {
   _toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
 }
 
-// ── Loaders ───────────────────────────────────────────────────────────────────
 const loaders = {
   dashboard: loadDashboard,
   news:      loadNews,
@@ -136,7 +127,6 @@ const loaders = {
   users:     loadUsers,
 };
 
-// ── DASHBOARD ─────────────────────────────────────────────────────────────────
 async function loadDashboard() {
   try {
     const [news, teachers, events, media] = await Promise.all([
@@ -161,7 +151,6 @@ async function loadDashboard() {
   } catch (e) { toast(e.message, 'error'); }
 }
 
-// ── NEWS ──────────────────────────────────────────────────────────────────────
 async function loadNews() {
   try {
     allNews = await api('/api/news/admin/all');
@@ -258,7 +247,6 @@ window.openNewsModal = function(id) {
       </div>
     </div>`;
 
-  // Init Quill with custom toolbar
   if (quillEditor) quillEditor = null;
   quillEditor = new Quill('#mNewsBody', {
     theme: 'snow',
@@ -309,7 +297,6 @@ window.deleteNews = async function(id) {
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// ── TEACHERS ──────────────────────────────────────────────────────────────────
 let allTeachers = [];
 
 async function loadTeachers() {
@@ -394,7 +381,6 @@ window.deleteTeacher = async function(id) {
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// ── EVENTS ────────────────────────────────────────────────────────────────────
 let allEvents = [];
 
 async function loadEvents() {
@@ -472,7 +458,6 @@ window.deleteEvent = async function(id) {
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// ── MEDIA ─────────────────────────────────────────────────────────────────────
 async function loadMedia() {
   try {
     const files = await api('/api/media');
@@ -531,7 +516,6 @@ window.copyUrl = function(url) {
   navigator.clipboard.writeText(full).then(() => toast('URL vágólapra másolva ✓'));
 };
 
-// ── SETTINGS ─────────────────────────────────────────────────────────────────
 async function loadSettings() {
   try {
     const s = await api('/api/settings');
@@ -559,7 +543,6 @@ window.saveSettings = async function() {
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// ── USERS ─────────────────────────────────────────────────────────────────────
 let allUsers = [];
 
 async function loadUsers() {
@@ -637,7 +620,6 @@ window.deleteUser = async function(id) {
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// ── MODAL ─────────────────────────────────────────────────────────────────────
 function openModal() {
   document.getElementById('modalOverlay').classList.add('open');
   document.getElementById('modalSaveBtn').onclick = () => modalSaveFn?.();
@@ -651,7 +633,6 @@ window.closeModal = function() {
   modalSaveFn = null;
 };
 
-// ── IMAGE PICKER (for news editor) ────────────────────────────────────────────
 let _pickerImages = [];
 
 window.openImagePicker = async function() {
@@ -712,7 +693,6 @@ window.insertImageFromPicker = function(url, alt) {
   toast('Kép beillesztve ✓');
 };
 
-// Direct upload from the ⬆️ button inside picker panel
 window.uploadAndPickImage = async function(input) {
   const file = input.files[0];
   if (!file) return;
@@ -722,14 +702,11 @@ window.uploadAndPickImage = async function(input) {
     const result = await api('/api/media', { method: 'POST', body: fd });
     toast('Kép feltöltve, beillesztés…');
     input.value = '';
-    // Immediately insert into editor
     insertImageFromPicker(result.url, file.name);
-    // Also refresh the picker grid
     await refreshPickerImages();
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// Direct upload from the Quill toolbar ⬆️ button (outside picker panel)
 window.quillDirectUploadFn = async function(input) {
   const file = input.files[0];
   if (!file) return;
@@ -743,7 +720,6 @@ window.quillDirectUploadFn = async function(input) {
   } catch (e) { toast(e.message, 'error'); }
 };
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
 function esc(str) {
   return String(str||'')
     .replace(/&/g,'&amp;')

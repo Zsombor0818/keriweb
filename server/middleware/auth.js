@@ -1,6 +1,5 @@
-// server/middleware/auth.js
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET || 'keri_super_secret_2026';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 function requireAuth(req, res, next) {
   const token = req.cookies?.token || req.headers?.authorization?.replace('Bearer ', '');

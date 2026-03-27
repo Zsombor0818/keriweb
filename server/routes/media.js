@@ -1,4 +1,3 @@
-// server/routes/media.js
 const router = require('express').Router();
 const db     = require('../db');
 const multer = require('multer');

@@ -1,4 +1,3 @@
-// server/routes/users.js
 const router = require('express').Router();
 const db     = require('../db');
 const bcrypt = require('bcryptjs');

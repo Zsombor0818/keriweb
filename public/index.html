@@ -1,35 +1,30 @@
 <!doctype html>
 <html lang="hu">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Katolikus Keri – Szent István Technikum és Gimnázium</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/css/site.css" />
-  </head>
-  <body>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
     <header>
-      <div class="h-inner">
-        <button class="hbtn" id="sbBtn">
+        <div class="h-inner">
+            <button class="hbtn" id="sbBtn">
           <span></span><span></span><span></span>
         </button>
-        <div class="logo" onclick="nav('home')">
-          <div class="cross"></div>
-          <div>
-            <span class="logo-name">Katolikus Keri</span>
-            <span class="logo-sub">Technikum &amp; Gimnázium</span>
-          </div>
-        </div>
-        <nav class="hnav">
-          <a onclick="nav('home')" class="hide-m">Kezdőlap</a>
-          <a
-            href="https://katolikuskeri.e-kreta.hu/Adminisztracio/Login"
-            class="hide-m"
-            target="_blank"
-            >E-napló</a
+            <div class="logo" onclick="nav('home')">
+                <div class="cross"></div>
+                <div>
+                    <span class="logo-name">Katolikus Keri</span>
+                    <span class="logo-sub">Technikum &amp; Gimnázium</span>
+                </div>
+            </div>
+            <nav class="hnav">
+                <a onclick="nav('home')" class="hide-m">Kezdőlap</a>
+                <a href="https://katolikuskeri.e-kreta.hu/Adminisztracio/Login" class="hide-m" target="_blank">E-napló</a
           >
           <a
             href="https://katolikuskeri.edupage.org/timetable/"
@@ -38,50 +33,63 @@
             >Órarend</a
           >
           <a onclick="nav('kapcsolat')" class="hide-m">Kapcsolat</a>
-          <div class="hsoc hide-m" id="socialLinks"></div>
-          <a class="btn-login" href="/admin">Bejelentkezés</a>
-        </nav>
-      </div>
+                <div class="hsoc hide-m" id="socialLinks"></div>
+                <a class="btn-login" href="/admin">Admin</a>
+            </nav>
+        </div>
     </header>
 
     <div class="overlay" id="overlay"></div>
 
     <div class="app">
-      <aside class="sidebar" id="sidebar">
-        <div class="sb-sec">
-          <span class="sb-label">Információk</span>
-          <a class="sb-item" data-p="nevado">Névadónkról</a>
-          <a class="sb-item" data-p="rendezvenyek">Rendezvények</a>
-          <a class="sb-item" data-p="oktatok">Oktatói testület</a>
-          <a class="sb-item" data-p="versenyek">Versenyek</a>
-          <a class="sb-item" data-p="tehetseg">Tehetség útlevél</a>
-        </div>
-        <div class="sb-div"></div>
-        <div class="sb-sec">
-          <span class="sb-label">Vizsgák</span>
-          <a class="sb-sub" data-p="erettsegi-idopontok">Érettségi időpontok</a>
-          <a class="sb-sub" data-p="erettsegi-technikum"
-            >Érettségi technikumban</a
+        <aside class="sidebar" id="sidebar">
+            <div class="sb-mobile-top">
+                <span class="sb-label">Gyors elérés</span>
+                <a class="sb-mobile-link" onclick="
+              nav('home');
+              closeSidebar();
+            ">Kezdőlap</a
+          >
+          <a
+            class="sb-mobile-link"
+            href="https://katolikuskeri.e-kreta.hu/Adminisztracio/Login"
+            target="_blank"
+            onclick="closeSidebar()"
+            >E-napló
+          </a>
+                <a class="sb-mobile-link" href="https://katolikuskeri.edupage.org/timetable/" target="_blank" onclick="closeSidebar()">Órarend
+          </a>
+            </div>
+
+            <div class="sb-sec">
+                <span class="sb-label">Információk</span>
+                <a class="sb-item" data-p="nevado">Névadónkról</a>
+                <a class="sb-item" data-p="rendezvenyek">Rendezvények</a>
+                <a class="sb-item" data-p="oktatok">Oktatói testület</a>
+                <a class="sb-item" data-p="versenyek">Versenyek</a>
+                <a class="sb-item" data-p="tehetseg">Tehetség útlevél</a>
+            </div>
+            <div class="sb-div"></div>
+            <div class="sb-sec">
+                <span class="sb-label">Vizsgák</span>
+                <a class="sb-sub" data-p="erettsegi-idopontok">Érettségi időpontok</a>
+                <a class="sb-sub" data-p="erettsegi-technikum">Érettségi technikumban</a
           >
           <a class="sb-sub" data-p="szakmai-vizsgak">Szakmai vizsgák</a>
-          <a class="sb-sub" data-p="kovetelmenyek">Képzési követelmények</a>
-        </div>
-        <div class="sb-div"></div>
-        <div class="sb-sec">
-          <span class="sb-label">Pályázatok</span>
-          <a class="sb-item" data-p="erasmus22">🇪🇺 Erasmus+ 2022</a>
-          <a class="sb-item" data-p="erasmus23">🇪🇺 Erasmus+ 2023</a>
-          <a class="sb-item" data-p="erasmus24">Erasmus+ Prága 2024</a>
-          <a class="sb-item" data-p="ntp">NTP pályázatok</a>
-        </div>
-        <div class="sb-div"></div>
-        <div class="sb-sec">
-          <span class="sb-label">Dokumentumok</span>
-          <a
-            class="sb-sub"
-            href="http://katolikuskeri.hu/Files/menu/Informaciok/Dokumentumok/IskolaiSzabalyzatok/hazirend.pdf"
-            target="_blank"
-            >Házirend (PDF)</a
+                <a class="sb-sub" data-p="kovetelmenyek">Képzési követelmények</a>
+            </div>
+            <div class="sb-div"></div>
+            <div class="sb-sec">
+                <span class="sb-label">Pályázatok</span>
+                <a class="sb-item" data-p="erasmus22">🇪🇺 Erasmus+ 2022</a>
+                <a class="sb-item" data-p="erasmus23">🇪🇺 Erasmus+ 2023</a>
+                <a class="sb-item" data-p="erasmus24">Erasmus+ Prága 2024</a>
+                <a class="sb-item" data-p="ntp">NTP pályázatok</a>
+            </div>
+            <div class="sb-div"></div>
+            <div class="sb-sec">
+                <span class="sb-label">Dokumentumok</span>
+                <a class="sb-sub" href="http://katolikuskeri.hu/Files/menu/Informaciok/Dokumentumok/IskolaiSzabalyzatok/hazirend.pdf" target="_blank">Házirend (PDF)</a
           >
           <a
             class="sb-sub"
@@ -100,7 +108,6 @@
       </aside>
 
       <main class="main" id="main">
-        <!-- HOME -->
         <div class="page active" id="page-home">
           <section class="hero">
             <div class="hero-pat"></div>
@@ -114,7 +121,7 @@
                 </p>
                 <div class="hero-acts">
                   <span class="btn-p" onclick="nav('felveteli')"
-                    >🎓 Felvételi információk</span
+                    >Felvételi információk</span
                   >
                   <span class="btn-s" onclick="nav('kapcsolat')"
                     >Kapcsolatfelvétel</span
@@ -353,7 +360,6 @@
           </section>
         </div>
 
-        <!-- HIREK PAGE -->
         <div class="page" id="page-hirek">
           <div class="ph">
             <div class="ph-in">
@@ -372,7 +378,6 @@
           </section>
         </div>
 
-        <!-- OKTATOK PAGE -->
         <div class="page" id="page-oktatok">
           <div class="ph">
             <div class="ph-in">
@@ -413,7 +418,6 @@
           </section>
         </div>
 
-        <!-- RENDEZVENYEK PAGE -->
         <div class="page" id="page-rendezvenyek">
           <div class="ph">
             <div class="ph-in">
@@ -432,7 +436,6 @@
           </section>
         </div>
 
-        <!-- KAPCSOLAT PAGE -->
         <div class="page" id="page-kapcsolat">
           <div class="ph">
             <div class="ph-in">
@@ -476,7 +479,6 @@
           </section>
         </div>
 
-        <!-- Static pages (felvételi, névadó, etc.) loaded from original HTML -->
         <div class="page" id="page-felveteli">
           <div class="ph">
             <div class="ph-in">
@@ -567,7 +569,6 @@
           </section>
         </div>
 
-        <!-- Névadó, Versenyek, Tehetség, Érettségi stb. oldalak megőrzöttek -->
         <div class="page" id="page-nevado">
           <div class="ph">
             <div class="ph-in">
@@ -576,6 +577,10 @@
                 Szent István
                 <em style="font-style: italic; color: var(--gold-l)">király</em>
               </h2>
+              <p>
+                Iskolánk névadója Magyarország első keresztény királya és
+                főpatrónusa.
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
@@ -584,19 +589,55 @@
               <h3>🕯️ Szent István élete (1001–1038)</h3>
               <p>
                 Iskolánk névadója <strong>Szent István király</strong>, a
-                keresztény magyar állam megalapítója. 1000. év karácsonyán
-                királlyá koronázták Esztergomban, II. Szilveszter pápától nyert
-                koronával és apostoli áldással.
+                keresztény magyar állam megalapítója, történelmünk kiemelkedő
+                alakja, egyben hazánk fővédőszentje. Állam- és egyházszervező
+                tevékenységével megalapozta a következő évszázadok magyar
+                történelmét.
+              </p>
+              <p>
+                Géza fejedelem és az erdélyi Sarolta gyermekeként Vajk néven
+                született, és keresztségben a passaui egyházmegye védőszentje
+                után kapta az István nevet. Prágai Szent Adalbert püspök
+                bérmálta meg. A kereszténység felvétele apjának, Géza
+                fejedelemnek még elsősorban politikai döntés volt; István
+                számára azonban a nyugati kereszténység terjesztése személyes és
+                hitbeli feladat volt.
+              </p>
+              <p>
+                1000. év karácsonyán királlyá koronázták Esztergomban, II.
+                Szilveszter pápától nyert koronával és apostoli áldással. Az
+                egyházi szerzők szerint ez egyenlő volt szuverén királyi
+                méltóságra emelésével és apostoli küldetésének elismerésével.
+                Magyarországot tíz püspökségre osztotta, köztük két érsekséget
+                alapított Esztergomban és Kalocsán.
               </p>
             </div>
             <div class="cc">
               <h3>📜 Az Intelmekből</h3>
+              <p>
+                Keresztény lelkiségének hű tükre a fiához, Imre herceghez írt
+                <em>Intelmek</em>. Az egyik legszebb foglalatát adják az alábbi
+                sorok:
+              </p>
               <div class="quote">
                 <p>
                   „Uralkodjál szelíden, alázattal, békésen harag és gyűlölködés
-                  nélkül! A király koronájának legszebb ékszerei a jótettek."
+                  nélkül! A király koronájának legszebb ékszerei a jótettek;
+                  azért illő, hogy a király igazságossággal és irgalmassággal,
+                  valamint a többi keresztény erénnyel ékeskedjék."
                 </p>
               </div>
+              <p style="margin-top: 14px">
+                László király 1083. augusztus 20-án – azóta nemzeti ünnepünk –
+                oltárra emeltette István, Imre herceg és Gellért püspök földi
+                maradványait. Szent István király tisztelete széles körben
+                elterjedt a Kárpát-medencében; sok templomnak és iskolának ő a
+                patrónusa és védőszentje – köztük a mi iskolánknak, a
+                <strong
+                  >Szent István Katolikus Technikum és Gimnáziumnak</strong
+                >
+                is.
+              </p>
             </div>
           </section>
         </div>
@@ -610,6 +651,10 @@
                   >eredmények</em
                 >
               </h2>
+              <p>
+                A 2024/25-ös tanévben kiemelkedő versenyeredményt elért
+                tanulóink.
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
@@ -618,7 +663,7 @@
               <table class="ctable">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th style="width: 30px">#</th>
                     <th>Verseny neve</th>
                     <th>Résztvevők</th>
                     <th>Megy. hely.</th>
@@ -637,6 +682,14 @@
                   </tr>
                   <tr>
                     <td class="rnk">2</td>
+                    <td>Szép magyar beszéd verseny</td>
+                    <td>2 fő</td>
+                    <td>2.</td>
+                    <td>–</td>
+                    <td>Nezáczki Á.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">3</td>
                     <td>Bod Péter Országos Könyvtárhasználati Verseny</td>
                     <td>2 fő</td>
                     <td>1., 2.</td>
@@ -644,35 +697,130 @@
                     <td>Márton D., Hriczu K.</td>
                   </tr>
                   <tr>
-                    <td class="rnk">3</td>
-                    <td>SzakmaSztár verseny (OSZTV)</td>
-                    <td>31 fő</td>
-                    <td>–</td>
-                    <td>1.</td>
-                    <td>Félegyházi Bence (orsz. 1.)</td>
-                  </tr>
-                  <tr>
                     <td class="rnk">4</td>
-                    <td>Nemes Tihamér Informatikai Verseny</td>
-                    <td>12 fő</td>
-                    <td>1.,2.,3.,5.</td>
+                    <td>Design Terminál – Vállalkozásfejlesztési Verseny</td>
+                    <td>10 fő</td>
+                    <td>1.</td>
                     <td>–</td>
-                    <td>1. Karsai M., 2. Félegyházi B.</td>
+                    <td>Mogyorósi P. K., Czakó Emma</td>
                   </tr>
                   <tr>
                     <td class="rnk">5</td>
+                    <td>Legyél Te is Pénzügyi Junior Klasszis!</td>
+                    <td>12 fő</td>
+                    <td>1.</td>
+                    <td>–</td>
+                    <td>Jobbágy D., Tarr J., Kiss E., Czinke L.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">6</td>
+                    <td>Pénzkód (Pénziránytű Alapítvány)</td>
+                    <td>6 fő</td>
+                    <td>–</td>
+                    <td>5.</td>
+                    <td>Mogyorósi P. K., Gulyás E., Gergely L.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">7</td>
+                    <td>EKKE Tehetségútlevél pályázat</td>
+                    <td>2 fő</td>
+                    <td>–</td>
+                    <td>2.</td>
+                    <td>Mogyorósi P. K., Végh Bianka (különdíj)</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">8</td>
+                    <td>Katolikus Iskolák Matematika Versenye</td>
+                    <td>58 fő</td>
+                    <td>–</td>
+                    <td>–</td>
+                    <td>2. fordulóba jutott 2 fő</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">9</td>
+                    <td>Zrínyi Matematika Verseny</td>
+                    <td>25 fő</td>
+                    <td>–</td>
+                    <td>–</td>
+                    <td>Csákó E. L., Kristály M., Hriczu K., Gecsey Á.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">10</td>
                     <td>EKKE Tehetségútlevél – szociálpedagógia</td>
                     <td>1 fő</td>
                     <td>–</td>
                     <td>1.</td>
                     <td>Dócs Ágnes</td>
                   </tr>
+                  <tr>
+                    <td class="rnk">11</td>
+                    <td>HEBE levelező verseny (Hallo USA!)</td>
+                    <td>4 fő</td>
+                    <td>–</td>
+                    <td>2.</td>
+                    <td>Ferencz F., Namesnyik L.; Barna J., Bucsiová E.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">12</td>
+                    <td>SzakmaSztár verseny (OSZTV)</td>
+                    <td>31 fő</td>
+                    <td>–</td>
+                    <td>1.</td>
+                    <td>
+                      Félegyházi Bence (orsz. 1.), Lukács L., Simon M.
+                      (vizsgamentesség)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">13</td>
+                    <td>DEIK Regionális Programozó Verseny</td>
+                    <td>15 fő</td>
+                    <td>–</td>
+                    <td>16.</td>
+                    <td>Félegyházi B., Sedlák P. A., Sedlák Á.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">14</td>
+                    <td>Nemes Tihamér Nemzetközi Informatikai Verseny</td>
+                    <td>12 fő</td>
+                    <td>1.,2.,3.,5.</td>
+                    <td>–</td>
+                    <td>
+                      1. Karsai M., 2. Félegyházi B., 3. Sedlák Á., 5. Csákó E.
+                      L.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">15</td>
+                    <td>Kozma László Alkalmazói Verseny</td>
+                    <td>6 fő</td>
+                    <td>–</td>
+                    <td>12., 17.</td>
+                    <td>
+                      Gecsey Á. (12.), Fényes V., Sárosi S., Lukács L. (17.)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">16</td>
+                    <td>Kódkupa: IIOK válogató</td>
+                    <td>3 fő</td>
+                    <td>–</td>
+                    <td>–</td>
+                    <td>4. fordulóig: Albók Cs., Sedlák Á., Tóbiás Sz.</td>
+                  </tr>
+                  <tr>
+                    <td class="rnk">17</td>
+                    <td>Junior Skills – Webfejlesztő kategória</td>
+                    <td>9 fő</td>
+                    <td>–</td>
+                    <td>–</td>
+                    <td>Középdöntő: Csákó E. L., Szikora Sz.</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </section>
         </div>
-
         <div class="page" id="page-tehetseg">
           <div class="ph">
             <div class="ph-in">
@@ -682,24 +830,36 @@
                   >útlevél</em
                 >
               </h2>
+              <p>
+                Regisztrált Tehetségpont vagyunk – egyéni fejlesztési napló és
+                tehetséggondozás.
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
           <section class="sec">
             <div class="cc">
-              <h3>⭐ Mi az a Tehetségútlevél?</h3>
+              <h3>Mi az a Tehetségútlevél?</h3>
               <p>
-                A Tehetségútlevél egy egyéni fejlesztési napló. Iskolánk 2018
-                óta <strong>Regisztrált Tehetségpont</strong>.
+                A Tehetségútlevél egy egyéni fejlesztési napló, amely
+                dokumentálja a tanuló versenyeredményeit, különleges
+                teljesítményeit és tehetséggondozási útját. Iskolánk 2018 óta
+                <strong>Regisztrált Tehetségpont</strong>, amelyet az Oktatási
+                Hivatal nyilvántart és elismer.
               </p>
             </div>
             <div class="cc">
-              <h3>🏆 Partnereink</h3>
-              <span class="badge b-amber">⭐ Regisztrált Tehetségpont</span>
-              <span class="badge b-amber">🌐 Cisco Networking Academy</span>
-              <span class="badge b-amber">💻 ECDL/ICDL Vizsgaközpont</span>
-              <span class="badge b-amber">🌍 Erasmus+ Akkreditált</span>
-              <span class="badge b-cr">🌿 Teremtésvédő Iskola 2025–28</span>
+              <h3>Elnyert díjaink és partnereink</h3>
+              <div style="display: flex; flex-wrap: wrap">
+                <span class="badge b-amber">Regisztrált Tehetségpont</span>
+                <span class="badge b-amber">Pénziránytű Bázisiskola</span>
+                <span class="badge b-amber">Cisco Networking Academy</span>
+                <span class="badge b-amber">ECDL/ICDL Vizsgaközpont</span>
+                <span class="badge b-amber">Erasmus+ Akkreditált</span>
+                <span class="badge b-amber">Python Institute Partner</span>
+                <span class="badge b-cr">Teremtésvédő Iskola 2025–28</span>
+                <span class="badge b-cr">Ökoiskola</span>
+              </div>
             </div>
           </section>
         </div>
@@ -714,60 +874,200 @@
                   >időpontok 2025–26</em
                 >
               </h2>
+              <p>
+                Őszi és tavaszi érettségi vizsgaidőszakok írásbeli és szóbeli
+                beosztása.
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
           <section class="sec">
             <div class="alert">
               <p>
-                ⚠️ <strong>Fontos:</strong> Tavaszi vizsgaidőszak jelentkezési
-                határideje: <strong>február 15.</strong>
+                <strong>Fontos:</strong> Tavaszi vizsgaidőszak jelentkezési
+                határideje: <strong>február 15.</strong> · Őszi:
+                <strong>szeptember 5.</strong>
               </p>
             </div>
             <div class="cc">
-              <h3>🌸 2026. május–júniusi érettségi</h3>
-              <table class="etable">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Emelt szintű</th>
-                    <th>Középszintű</th>
-                    <th>Időpont</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="num">1</td>
-                    <td>Magyar ny. és irodalom</td>
-                    <td>Magyar ny. és irodalom</td>
-                    <td class="date">2026. máj. 4., 9:00</td>
-                  </tr>
-                  <tr>
-                    <td class="num">2</td>
-                    <td>Matematika</td>
-                    <td>Matematika</td>
-                    <td class="date">2026. máj. 5., 9:00</td>
-                  </tr>
-                  <tr>
-                    <td class="num">3</td>
-                    <td>Történelem</td>
-                    <td>Történelem</td>
-                    <td class="date">2026. máj. 6., 9:00</td>
-                  </tr>
-                  <tr>
-                    <td class="num">4</td>
-                    <td>Angol nyelv</td>
-                    <td>Angol nyelv</td>
-                    <td class="date">2026. máj. 7., 9:00</td>
-                  </tr>
-                  <tr>
-                    <td class="num">5</td>
-                    <td>Német nyelv</td>
-                    <td>Német nyelv</td>
-                    <td class="date">2026. máj. 8., 9:00</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h3>2025. október–novemberi írásbeli érettségi vizsgák</h3>
+              <div style="overflow-x: auto">
+                <table class="etable">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Emelt szintű</th>
+                      <th>Középszintű</th>
+                      <th>Időpont</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="num">1</td>
+                      <td>Magyar nyelv és irodalom</td>
+                      <td>Magyar ny. és irodalom</td>
+                      <td class="date">2025. okt. 13., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">2</td>
+                      <td>Matematika</td>
+                      <td>Matematika</td>
+                      <td class="date">2025. okt. 14., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">3</td>
+                      <td>Történelem</td>
+                      <td>Történelem</td>
+                      <td class="date">2025. okt. 15., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">4</td>
+                      <td>Angol nyelv</td>
+                      <td>Angol nyelv</td>
+                      <td class="date">2025. okt. 16., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">5</td>
+                      <td>Kémia, gazdasági ismeretek</td>
+                      <td>Kémia, természettudomány</td>
+                      <td class="date">2025. okt. 16., 14:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">6</td>
+                      <td>Német nyelv</td>
+                      <td>Német nyelv</td>
+                      <td class="date">2025. okt. 20., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">7</td>
+                      <td>Digitális kultúra</td>
+                      <td>Digitális kultúra</td>
+                      <td class="date">2025. okt. 21., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">8</td>
+                      <td>Biológia, közig. ismeretek</td>
+                      <td>Biológia</td>
+                      <td class="date">2025. okt. 22., 14:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">9</td>
+                      <td>Fizika, ének-zene</td>
+                      <td>Fizika, ének-zene</td>
+                      <td class="date">2025. okt. 27., 14:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">10</td>
+                      <td colspan="2">Szóbeli – emelt szint</td>
+                      <td class="date">2025. nov. 6–10.</td>
+                    </tr>
+                    <tr>
+                      <td class="num">11</td>
+                      <td colspan="2">Szóbeli – középszint</td>
+                      <td class="date">2025. nov. 17–21.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="cc">
+              <h3>🌸 2026. május–júniusi írásbeli érettségi vizsgák</h3>
+              <div style="overflow-x: auto">
+                <table class="etable">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Emelt szintű</th>
+                      <th>Középszintű</th>
+                      <th>Időpont</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="num">1</td>
+                      <td>Magyar nyelv és irodalom</td>
+                      <td>Magyar ny. és irodalom</td>
+                      <td class="date">2026. máj. 4., 9:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">2</td>
+                      <td>Matematika</td>
+                      <td>Matematika</td>
+                      <td class="date">2026. máj. 5., 9:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">3</td>
+                      <td>Történelem</td>
+                      <td>Történelem</td>
+                      <td class="date">2026. máj. 6., 9:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">4</td>
+                      <td>Angol nyelv</td>
+                      <td>Angol nyelv</td>
+                      <td class="date">2026. máj. 7., 9:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">5</td>
+                      <td>Német nyelv</td>
+                      <td>Német nyelv</td>
+                      <td class="date">2026. máj. 8., 9:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">6</td>
+                      <td>–</td>
+                      <td>Digitális kultúra</td>
+                      <td class="date">2026. máj. 11., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">7</td>
+                      <td>Biológia</td>
+                      <td>Biológia</td>
+                      <td class="date">2026. máj. 12., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">8</td>
+                      <td>Kémia</td>
+                      <td>Kémia</td>
+                      <td class="date">2026. máj. 14., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">9</td>
+                      <td>Földrajz</td>
+                      <td>Földrajz</td>
+                      <td class="date">2026. máj. 14., 14:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">10</td>
+                      <td>Fizika</td>
+                      <td>Fizika</td>
+                      <td class="date">2026. máj. 19., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">11</td>
+                      <td>Francia nyelv</td>
+                      <td>Francia nyelv</td>
+                      <td class="date">2026. máj. 20., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">12</td>
+                      <td>Spanyol nyelv</td>
+                      <td>Spanyol nyelv</td>
+                      <td class="date">2026. máj. 21., 8:00</td>
+                    </tr>
+                    <tr>
+                      <td class="num">13</td>
+                      <td colspan="2">Szóbeli – emelt szint</td>
+                      <td class="date">2026. jún. 3–10.</td>
+                    </tr>
+                    <tr>
+                      <td class="num">14</td>
+                      <td colspan="2">Szóbeli – középszint</td>
+                      <td class="date">2026. jún. 15. – júl. 1.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
         </div>
@@ -782,32 +1082,96 @@
                   >technikumban</em
                 >
               </h2>
+              <p>
+                Tudnivalók az érettségi vizsga rendjéről technikumi tanulók
+                számára.
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
           <section class="sec">
             <div class="alert">
               <p>
-                📌 A technikumi osztályainkban a képzés
-                <strong>13. évfolyamon fejeződik be</strong>.
+                A technikumi osztályainkban a képzés
+                <strong>13. évfolyamon fejeződik be</strong>, ekkor tesznek
+                rendes érettségi vizsgát a diákok!
               </p>
             </div>
             <div class="cc">
               <h3>Érettségire jelentkezési határidők</h3>
               <ul>
-                <li><strong>Tavaszi: február 15.</strong></li>
-                <li><strong>Őszi: szeptember 5.</strong></li>
+                <li><strong>Tavaszi vizsgaidőszak: február 15.</strong></li>
+                <li><strong>Őszi vizsgaidőszak: szeptember 5.</strong></li>
               </ul>
             </div>
-            <div class="alert">
+            <div class="cc">
+              <h3>1. Előrehozott érettségi vizsga a technikumban</h3>
               <p>
-                ⚠️ A technikumban a szakmai vizsga sikeres teljesítése nélkül
-                <strong>érettségi bizonyítványt nem lehet kiállítani!</strong>
+                <strong
+                  >Magyar nyelv és irodalom, matematika és történelem</strong
+                >
+                tantárgyakból előrehozott érettségi vizsgára a tanulók
+                legkorábban a
+                <strong>12. évfolyam május–júniusi</strong> vizsgaidőszakban
+                jelentkezhetnek.
               </p>
+              <p>
+                <strong>Idegen nyelvből</strong> és más érettségi vizsgatárgyból
+                akkor tehető előrehozott vizsga, ha a tanuló teljesíti az adott
+                vizsgatárgyra meghatározott követelményeket, és megszerzi a
+                számára előírt osztályzatokat. A tárgy tanulását a szakmai
+                program alapján még nem fejezte be – osztályozóvizsgát kell
+                tennie!
+              </p>
+              <p>
+                Az előrehozott érettségi vizsga eredményéről a vizsgabizottság
+                <strong>Törzslapkivonatot</strong> ad ki. Ezt a tanuló köteles
+                megőrizni, és a rendes érettségi vizsgára történő jelentkezéskor
+                le kell adnia.
+              </p>
+            </div>
+            <div class="cc">
+              <h3>2. Rendes érettségi vizsga a technikumban</h3>
+              <p>
+                Technikumban az érettségi bizonyítvány akkor állítható ki, ha a
+                vizsgázó sikeresen teljesítette a kötelező vizsgatárgyak
+                érettségi vizsgáit, <strong>és</strong> a technikum szakmai
+                programjában előírt
+                <strong>szakmai vizsgát sikeresen letette</strong>.
+              </p>
+              <div class="alert">
+                <p>
+                  A technikumban a szakmai vizsga sikeres teljesítése nélkül
+                  <strong>érettségi bizonyítványt nem lehet kiállítani!</strong>
+                </p>
+              </div>
+              <p>
+                A 13. évfolyam május–júniusi vizsgaidőszakára mindenképpen
+                jelentkezni kell rendes érettségi vizsgára. A jelentkezéskor a
+                korábbi vizsgaidőszakokban megszerzett eredményeket tartalmazó
+                törzslapkivonatot le kell adni.
+              </p>
+            </div>
+            <div class="cc">
+              <h3>Vonatkozó jogszabályok</h3>
+              <ul>
+                <li>A 2019. évi LXXX. törvény a szakképzésről (Szkt.)</li>
+                <li>
+                  100/1997. (VI. 13.) Korm. rendelet – az érettségi vizsga
+                  vizsgaszabályzata
+                </li>
+                <li>
+                  A belügyminiszter 27/2025. (VII. 24.) BM rendelete – a
+                  2025/2026. tanév rendje
+                </li>
+                <li>
+                  12/2020. (II.7.) Korm. rendelet a szakképzési törvény
+                  végrehajtásáról
+                </li>
+              </ul>
             </div>
           </section>
         </div>
-
         <div class="page" id="page-szakmai-vizsgak">
           <div class="ph">
             <div class="ph-in">
@@ -827,7 +1191,7 @@
                 class="dc"
                 href="http://katolikuskeri.hu/Files/menu/Informaciok/Vizsgak/SzakmaiVizsgak/szakmai_vizsgak_idopontjai.pdf"
                 target="_blank"
-                ><div class="dc-icon">📅</div>
+              >
                 <div>
                   <div class="dc-name">Szakmai vizsgák időpontjai</div>
                   <div class="dc-type">PDF letöltés</div>
@@ -835,61 +1199,10 @@
               >
             </div>
             <div class="cc" style="margin-top: 24px">
-              <h3>🎓 ECDL/ICDL Vizsgaközpont</h3>
+              <h3>ECDL/ICDL Vizsgaközpont</h3>
               <p>
                 Iskolánk akkreditált <strong>ECDL/ICDL vizsgaközpont</strong>.
               </p>
-            </div>
-          </section>
-        </div>
-
-        <div class="page" id="page-kovetelmenyek">
-          <div class="ph">
-            <div class="ph-in">
-              <span class="ph-eye">✝ Képzés</span>
-              <h2>
-                Képzési és kimeneti
-                <em style="font-style: italic; color: var(--gold-l)"
-                  >követelmények</em
-                >
-              </h2>
-            </div>
-          </div>
-          <div class="divider" style="margin-top: 0"></div>
-          <section class="sec">
-            <div class="pgrid">
-              <div class="pcard">
-                <div class="picon">💼</div>
-                <div class="pname">Gazdálkodás és Menedzsment</div>
-                <a
-                  href="http://katolikuskeri.hu/keri/index.php?action=page&id=108"
-                  target="_blank"
-                  class="btn-p"
-                  style="
-                    font-size: 12px;
-                    padding: 8px 16px;
-                    margin-top: 4px;
-                    display: inline-flex;
-                  "
-                  >Megtekintés →</a
-                >
-              </div>
-              <div class="pcard">
-                <div class="picon">💻</div>
-                <div class="pname">Informatika és Távközlés</div>
-                <a
-                  href="http://katolikuskeri.hu/keri/index.php?action=page&id=110"
-                  target="_blank"
-                  class="btn-p"
-                  style="
-                    font-size: 12px;
-                    padding: 8px 16px;
-                    margin-top: 4px;
-                    display: inline-flex;
-                  "
-                  >Megtekintés →</a
-                >
-              </div>
             </div>
           </section>
         </div>
@@ -904,6 +1217,10 @@
                   >Bécs 2022</em
                 >
               </h2>
+              <p>
+                2021-1-HU01-KA122-VET-000016351 projektszámú mobilitás – Bécs,
+                2022. május
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
@@ -919,13 +1236,50 @@
                 </div>
               </div>
               <p>
-                15 keris diák három hetet töltött Bécsben az Option 2.0 nevű
-                cégnél, ahol szakmai tudásukat mélyíthették el. A program végén
-                idegen nyelvű <strong>Europass oklevelet</strong> kaptak.
+                2022. május 21-én hazaérkezett az a 15 keris diák, akik három
+                hetet töltöttek Bécsben egy szakmai mobilitási program
+                keretében. A fiatalok az Option 2.0 nevű cégnél mélyíthették el
+                szakmai tudásukat, nyerhettek munkatapasztalatot.
               </p>
-              <span class="badge b-amber">🇪🇺 EU társfinanszírozott</span
-              ><span class="badge b-cr">🔒 Lezárult projekt</span>
+              <p>
+                A program végén diákjaink idegen nyelvű
+                <strong>Europass oklevelet</strong> kaptak, amely bizonyítja,
+                hogy külföldön szereztek szakmai tapasztalatot, s ami később
+                javíthatja munkaerőpiaci esélyeiket.
+              </p>
+              <p>
+                A projektben 3 fő kilencedikes, 4 fő tizedikes, 1 fő
+                tizenegyedikes, valamint 7 fő tizenharmadikos informatikus diák
+                vett részt. A diákok nem csak szakmailag fejlődtek – önállóbbak
+                is lettek, és megtanulták rendben tartani környezetüket,
+                önállóan közlekedni egy nagyvárosban.
+              </p>
+              <p>
+                A Tempus Közalapítvány által fémjelzett program az Európai Unió
+                támogatásával valósulhatott meg, így a szállás, utazás, étkezés
+                és a kulturális programok
+                <strong>teljesen ingyenesek</strong> voltak a diákok és
+                kísérőtanáraik számára.
+              </p>
+              <div class="alert">
+                <p>
+                  Kulturális programok: Bécs belváros, Schönbrunni kastély,
+                  Technikatörténeti Múzeum, Természettudományi Múzeum, Belvedere
+                  kastély, Közlekedési Múzeum
+                </p>
+              </div>
+              <p>
+                A diákok Jean Marteau úr instrukcióit követték, aki a három
+                csoportnak tudásszintjüknek megfelelő, mégis kihívást jelentő
+                feladatokat adott, és tutorként rendszeresen visszajelzett. A
+                mentor az utolsó nap elismerően nyilatkozott a keris diákok
+                teljesítményéről.
+              </p>
             </div>
+            <span class="badge b-amber">🇪🇺 EU társfinanszírozott</span>
+            <span class="badge b-amber">Option 2.0 cégnél</span>
+            <span class="badge b-cr">Europass oklevél</span>
+            <span class="badge b-cr">Lezárult projekt</span>
           </section>
         </div>
 
@@ -939,6 +1293,7 @@
                   >Bécs &amp; Milánó 2023</em
                 >
               </h2>
+              <p>2020-1-HU01-KA102-078093 projekt – A jövő informatikusai</p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
@@ -947,20 +1302,58 @@
               <div class="ecard-head">
                 <span class="e-flag">🇮🇹</span>
                 <div>
-                  <h3>Milánó & Bécs – Oktatói és tanulói mobilitás</h3>
+                  <h3>Milánó – Oktatói és tanulói mobilitás</h3>
                   <div class="ecard-meta">
-                    2022 | Betacom + Plattform Generation Europa
+                    2022. július (tanárok) + 2022. szeptember–október (diákok) |
+                    Betacom cég
                   </div>
                 </div>
               </div>
               <p>
-                12 informatikus diák Milánóban a Betacom cégnél, 13 diák Bécsben
-                a Plattform Generation e.V. szervezetnél töltött szakmai
-                mobilitást.
+                2022 júliusában a Keri informatika szakos oktatói utaztak 6
+                napos szakmai tapasztalatszerző útra Milánóba. A következő
+                ősszel 12 informatikus diák látogatta meg a Betacom céget, amely
+                komoly szakmai tapasztalattal rendelkezik a szoftverfejlesztés
+                területén.
               </p>
-              <span class="badge b-amber">🇪🇺 EU társfinanszírozott</span
-              ><span class="badge b-cr">🔒 Lezárult projekt</span>
+              <p>
+                A fiatalok 3 csapatban dolgoztak, és rendszeresen beszámoltak
+                tutoruknak az elvégzett feladatokról. Emellett megcsodálhatták a
+                Milánói dómot, a Castello Sforzescót és a Leonardo da Vinci
+                Technikatörténeti Múzeumot.
+                <strong
+                  >A diákok 2022. szeptember 18 és október 8 között tartózkodtak
+                  Milánóban.</strong
+                >
+              </p>
             </div>
+            <div class="ecard" style="margin-top: 0">
+              <div class="ecard-head">
+                <span class="e-flag">🇦🇹</span>
+                <div>
+                  <h3>Bécs – 3 hetes szakmai gyakorlat</h3>
+                  <div class="ecard-meta">
+                    2022. május | 13 informatikus diák | Plattform Generation
+                    Europa e.V.
+                  </div>
+                </div>
+              </div>
+              <p>
+                2022. május 25-én hazaérkezett az a 13 keris diák, akik három
+                hetet töltöttek Bécsben a Plattform Generation Europa e.V. nevű
+                szervezetnél. A diákok nemcsak szakmailag fejlődtek, hanem
+                önállóbbak is lettek. Minden nap munkanaplót vezettek.
+              </p>
+              <p>
+                Kulturális programok: Bécs belváros, Schönbrunni kastély,
+                Technikatörténeti Múzeum, Belvedere kastély. A projekt Europass
+                oklevelekkel zárult.
+              </p>
+            </div>
+            <span class="badge b-amber">🇪🇺 EU társfinanszírozott</span>
+            <span class="badge b-amber">🇮🇹 Milánó – Betacom</span>
+            <span class="badge b-amber">🇦🇹 Bécs – Plattform Generation</span>
+            <span class="badge b-cr">Lezárult projekt</span>
           </section>
         </div>
 
@@ -974,6 +1367,10 @@
                   >Prága 2025</em
                 >
               </h2>
+              <p>
+                2024-1-HU01-KA121-VET-000201610 – Szakmai tapasztalatszerző
+                projekt
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
@@ -984,19 +1381,50 @@
                 <div>
                   <h3>Prága – 2 hetes szakmai mobilitás</h3>
                   <div class="ecard-meta">
-                    2025. március 17–30. | 16 diák + 2 kísérőtanár
+                    2025. március 17–30. | 16 diák + 2 kísérőtanár | M2C, Atre,
+                    Iglice Alapítvány óvoda
                   </div>
                 </div>
               </div>
               <p>
-                16 diák és 2 kísérőtanár vett részt a prágai Erasmus+ mobilitási
-                programban. Az oktatási és informatika ágazatos diákok két
-                informatikai cégnél és a Prágai Magyar Kulturális Intézet magyar
-                óvodában dolgoztak.
+                A Szent István Katolikus Technikum és Gimnázium 2025. március
+                17. és 30. között 16 diák és 2 kísérőtanár részvételével vett
+                részt az Erasmus+ mobilitási programban Prágában. Az oktatási és
+                informatika ágazatos diákok két informatikai cégnél és a Prágai
+                Magyar Kulturális Intézet magyar óvodában mélyíthették el
+                szakmai tudásukat.
               </p>
-              <span class="badge b-amber">🇪🇺 EU társfinanszírozott</span
-              ><span class="badge b-cr">✅ Aktív projekt</span>
+              <p>
+                A program végén a diákok idegen nyelvű
+                <strong>Europass oklevelet</strong> kaptak. A Tempus
+                Közalapítvány által fémjelzett program az Európai Unió
+                támogatásával valósult meg – szállás, utazás, étkezés és
+                kulturális programok teljesen ingyenesek voltak.
+              </p>
+              <p>
+                Az oktatási ágazatos lányok bölcsődésekkel és óvodás korú
+                gyerekekkel foglalkoztak, játszottak, meséltek, zenéltek, és
+                részt vettek egy húsvéti ünnepség előkészítésében. A
+                kísérőtanárok: <strong>Pongó Barbara</strong> (angol tanár) és
+                <strong>Prokop Norbert</strong> (informatika tanár).
+              </p>
+              <div class="alert">
+                <p>
+                  Kulturális programok: Várnegyed, Természettudományi Múzeum,
+                  Állatkert, Károly-híd, Prága Óvárosa
+                </p>
+              </div>
+              <p>
+                Kintlétük alatt pár naponta fotós és videós beszámolókat
+                készítettek a honlapra és az iskola közösségi média felületeire.
+                Hazaérkezés után fotókiállítást is rendeztek az informatikai
+                szakmai napon.
+              </p>
             </div>
+            <span class="badge b-amber">🇪🇺 EU társfinanszírozott</span>
+            <span class="badge b-amber">M2C, Atre – informatika</span>
+            <span class="badge b-amber">Iglice Alapítvány óvoda</span>
+            <span class="badge b-cr">Aktív projekt</span>
           </section>
         </div>
 
@@ -1010,13 +1438,16 @@
                   >pályázatok</em
                 >
               </h2>
+              <p>
+                Nemzeti Tehetségprogram pályázatok tehetséges tanulóink
+                fejlesztéséért.
+              </p>
             </div>
           </div>
           <div class="divider" style="margin-top: 0"></div>
           <section class="sec">
             <div class="ecard">
               <div class="ecard-head">
-                <span class="e-flag">🏆</span>
                 <div>
                   <h3>NTP-KNI-20-0091 – Vállalkozzunk!</h3>
                   <div class="ecard-meta">
@@ -1025,9 +1456,80 @@
                 </div>
               </div>
               <p>
-                60 órás tehetséggondozó program, 3 napos Hegyközi tábor és
-                digitális szabadulószoba készítése.
+                Iskolánk sikeresen pályázott a Nemzeti Tehetségprogram pályázati
+                kiírására. Az elnyert összegből az alábbi programelemek
+                valósultak meg:
               </p>
+              <ul>
+                <li>
+                  60 órás tehetséggondozó programsorozat vállalkozások
+                  témakörben
+                </li>
+                <li>
+                  3 napos Hegyközi tábor: Károlyi Kastély látogatás, Hollóházi
+                  Porcelángyár, ZEMA Porcelánmanufaktúra
+                </li>
+                <li>
+                  OTP Fáy Alapítvány – streamelt előadás: Vállalkozások indítása
+                  és működése
+                </li>
+                <li>Digitális szabadulószoba készítése</li>
+                <li>
+                  Digitális asztali rajztáblák és kivetítő képernyő beszerzése
+                </li>
+              </ul>
+              <p>
+                Az Emberi Erőforrás Támogatáskezelő által nyertesnek hirdetett
+                pályázatban a Zemplén Televízió is készített összefoglalót a
+                tehetségműhely működéséről.
+              </p>
+              <a
+                href="https://forms.gle/ibXXu82cATYxPV39A"
+                target="_blank"
+                class="btn-p"
+                style="
+                  font-size: 13px;
+                  padding: 9px 18px;
+                  margin-top: 8px;
+                  display: inline-flex;
+                "
+                >Digitális szabadulószoba →</a
+              >
+            </div>
+            <div class="sec-h" style="margin-top: 24px">
+              <h2 class="sec-title">Korábbi NTP <span>pályázatok</span></h2>
+            </div>
+            <div class="dgrid">
+              <a
+                class="dc"
+                href="http://katolikuskeri.hu/keri/pages/pdf/97-honlapra.pdf"
+                target="_blank"
+              >
+                <div>
+                  <div class="dc-name">NTP-KNI-18-0048</div>
+                  <div class="dc-type">2018 · PDF letöltés</div>
+                </div></a
+              >
+              <a
+                class="dc"
+                href="http://katolikuskeri.hu/keri/index.php?action=page&id=129"
+                target="_blank"
+              >
+                <div>
+                  <div class="dc-name">NTP-KNI-19</div>
+                  <div class="dc-type">2019 · Részletek</div>
+                </div></a
+              >
+              <a
+                class="dc"
+                href="http://katolikuskeri.hu/keri/index.php?action=page&id=140"
+                target="_blank"
+              >
+                <div>
+                  <div class="dc-name">NTP-KNI-20-0091</div>
+                  <div class="dc-type">2021 · Vállalkozzunk!</div>
+                </div></a
+              >
             </div>
           </section>
         </div>
@@ -1073,33 +1575,28 @@
                   margin-top: 10px;
                   max-width: 250px;
                 "
+                id="footerContact"
               >
-                3980 Sátoraljaújhely, Kazinczy u. 12.<br /><span
-                  style="color: var(--st)"
-                  >+36-47-521-104 | +36-30-786-9473</span
-                >
+                Betöltés...
               </p>
             </div>
             <div class="fcol">
               <h4>Képzések</h4>
               <a onclick="nav('felveteli')">Gazdálkodás</a>
-              <a onclick="nav('felveteli')">Informatika</a>
-              <a onclick="nav('felveteli')">Oktatás</a>
-              <a onclick="nav('felveteli')">Gimnázium</a>
+                <a onclick="nav('felveteli')">Informatika</a>
+                <a onclick="nav('felveteli')">Oktatás</a>
+                <a onclick="nav('felveteli')">Gimnázium</a>
             </div>
             <div class="fcol">
-              <h4>Információk</h4>
-              <a onclick="nav('nevado')">Névadónkról</a>
-              <a onclick="nav('oktatok')">Oktatói testület</a>
-              <a onclick="nav('versenyek')">Versenyek</a>
-              <a onclick="nav('rendezvenyek')">Rendezvények</a>
+                <h4>Információk</h4>
+                <a onclick="nav('nevado')">Névadónkról</a>
+                <a onclick="nav('oktatok')">Oktatói testület</a>
+                <a onclick="nav('versenyek')">Versenyek</a>
+                <a onclick="nav('rendezvenyek')">Rendezvények</a>
             </div>
             <div class="fcol">
-              <h4>Navigáció</h4>
-              <a
-                href="https://katolikuskeri.e-kreta.hu/Adminisztracio/Login"
-                target="_blank"
-                >E-napló</a
+                <h4>Navigáció</h4>
+                <a href="https://katolikuskeri.e-kreta.hu/Adminisztracio/Login" target="_blank">E-napló</a
               >
               <a
                 href="https://katolikuskeri.edupage.org/timetable/"
@@ -1107,33 +1604,28 @@
                 >Órarend</a
               >
               <a onclick="nav('kapcsolat')">Kapcsolat</a>
-              <a onclick="openLogin()">Bejelentkezés</a>
+                <a href="/admin">Admin belépés</a>
             </div>
-          </div>
-          <div class="fbot">
-            <span
-              >© 2011–2026 Katolikuskeri.hu – Készítették: Kuzma Bence, Szabó
+    </div>
+    <div class="fbot">
+        <span>© 2011–2026 Katolikuskeri.hu – Készítették: Kuzmma Bence, Szabó
               Zsombor, Varga Viktor</span
             >
-            <div style="display: flex; gap: 14px">
-              <a
-                href="https://www.facebook.com/Katolikus-Keri-1453252641645070/"
-                target="_blank"
-                >Facebook</a
-              >
-              <a
-                href="https://www.instagram.com/katolikuskeriinsta"
-                target="_blank"
-                >Instagram</a
-              >
-              <a href="https://www.youtube.com/@katolikuskeriyt" target="_blank"
-                >YouTube</a
-              >
-            </div>
           </div>
         </footer>
       </main>
     </div>
-    <script src="/js/site.js"></script>
-  </body>
+    <button
+      class="cb-toggle"
+      id="cbToggle"
+      onclick="toggleColorblind()"
+      title="Színvak mód be/ki"
+    >
+      <span class="cb-icon">👁</span>
+        <span id="cbLabel">Színvak mód</span>
+        </button>
+
+        <script src="/js/site.js"></script>
+</body>
+
 </html>

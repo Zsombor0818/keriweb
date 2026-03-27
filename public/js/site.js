@@ -1,7 +1,4 @@
-/* public/js/site.js  –  Keri CMS public frontend */
 'use strict';
-
-// ── Navigation ───────────────────────────────────────────────────────────────
 const pages = document.querySelectorAll('.page');
 const sbItems = document.querySelectorAll('.sb-item, .sb-sub[data-p]');
 
@@ -14,7 +11,6 @@ function nav(id) {
 
 window.nav = nav;
 
-// Sidebar toggle
 const sbBtn   = document.getElementById('sbBtn');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
@@ -22,13 +18,30 @@ const overlay = document.getElementById('overlay');
 function openSidebar()  { sidebar.classList.add('open');  overlay.classList.add('show'); }
 function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); }
 
+window.closeSidebar = closeSidebar;
+
 sbBtn?.addEventListener('click', () =>
   sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
 overlay?.addEventListener('click', closeSidebar);
 
 sbItems.forEach(a => a.addEventListener('click', () => nav(a.dataset.p)));
 
-// ── API helpers ───────────────────────────────────────────────────────────────
+const CB_KEY = 'keri_colorblind';
+
+function applyColorblind(on) {
+  document.body.classList.toggle('colorblind', on);
+  const lbl = document.getElementById('cbLabel');
+  if (lbl) lbl.textContent = on ? 'Normál mód' : 'Színvak mód';
+}
+
+window.toggleColorblind = function() {
+  const next = !document.body.classList.contains('colorblind');
+  localStorage.setItem(CB_KEY, next ? '1' : '');
+  applyColorblind(next);
+};
+
+applyColorblind(!!localStorage.getItem(CB_KEY));
+
 async function api(url) {
   try {
     const r = await fetch(url);
@@ -37,20 +50,16 @@ async function api(url) {
   } catch { return null; }
 }
 
-// ── Load settings ─────────────────────────────────────────────────────────────
 async function loadSettings() {
   const s = await api('/api/settings');
   if (!s) return;
 
-  // Tagline
   const tagEl = document.getElementById('siteTagline');
   if (tagEl && s.site_tagline) tagEl.textContent = s.site_tagline;
 
-  // Director
   const dirEl = document.getElementById('directorName');
   if (dirEl && s.director) dirEl.textContent = `— ${s.director} igazgató`;
 
-  // Intézmény kártya
   setText('iDirector',   s.director);
   setText('iOmId',       s.om_id);
   setText('iAddress',    s.address);
@@ -58,11 +67,9 @@ async function loadSettings() {
   setText('iEmail',      s.email);
   setText('iMaintainer', s.maintainer);
 
-  // Footer contact
   const fc = document.getElementById('footerContact');
   if (fc) fc.innerHTML = `${s.address || ''}<br><span style="color:var(--st)">${s.phone1||''} | ${s.phone2||''}</span>`;
 
-  // Kapcsolat oldal
   const kCim   = document.getElementById('kontaktCim');
   const kTel   = document.getElementById('kontaktTel');
   const kEmail = document.getElementById('kontaktEmail');
@@ -70,7 +77,6 @@ async function loadSettings() {
   if (kTel)   kTel.innerHTML   = `<a href="tel:${s.phone1}" style="color:var(--cr);font-weight:600">${s.phone1||''}</a><br><a href="tel:${s.phone2}" style="color:var(--cr);font-weight:600">${s.phone2||''}</a>`;
   if (kEmail) kEmail.innerHTML = `<a href="mailto:${s.email}" style="color:var(--cr);font-weight:600">${s.email||''}</a>`;
 
-  // Social links
   const socEl   = document.getElementById('socialLinks');
   const footSoc = document.getElementById('footerSocial');
   if (socEl) {
@@ -92,7 +98,7 @@ function setText(id, val) {
   if (el) el.textContent = val || '–';
 }
 
-// ── Load News ─────────────────────────────────────────────────────────────────
+
 function fmtDate(dt) {
   if (!dt) return '';
   return new Date(dt).toLocaleDateString('hu-HU', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -102,7 +108,6 @@ async function loadNews() {
   const news = await api('/api/news?limit=20');
   if (!news) return;
 
-  // Hero news widget (top 3)
   const heroList = document.getElementById('heroNewsList');
   const countEl  = document.getElementById('newsCount');
   if (heroList) {
@@ -117,7 +122,6 @@ async function loadNews() {
       </a>`).join('');
   }
 
-  // Home news grid (top 3)
   const homeList = document.getElementById('homeNewsList');
   if (homeList) {
     homeList.innerHTML = news.slice(0, 3).map(n => `
@@ -133,7 +137,6 @@ async function loadNews() {
       </div>`).join('');
   }
 
-  // All news page
   const allList = document.getElementById('allNewsList');
   if (allList) {
     allList.innerHTML = news.map(n => `
@@ -150,7 +153,6 @@ async function loadNews() {
   }
 }
 
-// News detail – inline in a simple overlay
 let _newsCache = {};
 window.showNewsDetail = async function(id) {
   if (!_newsCache[id]) {
@@ -174,7 +176,6 @@ window.showNewsDetail = async function(id) {
   document.body.appendChild(overlay);
 };
 
-// ── Load Teachers ─────────────────────────────────────────────────────────────
 async function loadTeachers() {
   const teachers = await api('/api/teachers');
   if (!teachers) return;
@@ -203,7 +204,6 @@ async function loadTeachers() {
   }
 }
 
-// ── Load Events ───────────────────────────────────────────────────────────────
 async function loadEvents() {
   const events = await api('/api/events');
   if (!events) return;
@@ -219,7 +219,6 @@ async function loadEvents() {
     </div>`).join('');
 }
 
-// ── Utils ─────────────────────────────────────────────────────────────────────
 function escHtml(str) {
   return String(str)
     .replace(/&/g,'&amp;')
@@ -228,7 +227,6 @@ function escHtml(str) {
     .replace(/"/g,'&quot;');
 }
 
-// ── Inline styles for news detail overlay ─────────────────────────────────────
 const style = document.createElement('style');
 style.textContent = `
 .news-detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
@@ -242,7 +240,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
 (async () => {
   await loadSettings();
   await loadNews();

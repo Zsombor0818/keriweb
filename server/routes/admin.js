@@ -1,4 +1,3 @@
-// server/routes/admin.js
 const router = require('express').Router();
 const path = require('path');
 
